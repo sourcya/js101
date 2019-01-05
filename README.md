@@ -15,7 +15,7 @@ simple and clean code
 #### The Task:
 - Build a simple guessing game like the one in the demo directory.
 - Build the game from scratch, your app should has a unique functions lifecycle, don't use the same methods used in the demo or in the resource below from MDN
-- Enhance the input field validation, make it check for non-numerical or null values entered by the user
+- Your script should validate the user's input and alert the user when incorrect input is entered "See the Demo"
 
 #### Deliverables
 

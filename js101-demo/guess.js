@@ -3,7 +3,8 @@
 "A first splash into JavaScript"
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/A_first_splash
 
-Mutasim Issa | mutasim@sourcya.com
+Author: Mutasim Issa | mutasim@sourcya.com
+Version: 1.1.0
 */
 
     //initalize the game
@@ -19,8 +20,8 @@ Mutasim Issa | mutasim@sourcya.com
     const inputSubmit = document.createElement('input');
     const inputField = document.createElement('input');
     const inputReset = document.createElement('input');
+    const previousGuess = document.createElement('p');
 
-    //assigning for markup
     heading.textContent = 'Welcome to the guessing game!';
     description.textContent = 'We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We will tell you if your guess was too high or too low.';
     inputLabel.textContent = 'Enter your guess ';
@@ -33,48 +34,54 @@ Mutasim Issa | mutasim@sourcya.com
     inputReset.type = 'submit';
     inputReset.id = 'reset';
 
-    //start the lights
+
     document.body.appendChild(heading);
     document.body.appendChild(description);
     document.body.appendChild(inputLabel);
     document.body.appendChild(inputField);
     document.body.appendChild(inputSubmit);
+    document.body.appendChild(previousGuess);
+
     inputField.focus();
 
-    //listen for submit
-    inputSubmit.addEventListener('click', checkGuess);
+    inputSubmit.addEventListener('click', function(e){
+      let validateInput = Math.floor(Number(inputField.value));
+      if (validateInput === Infinity || String(validateInput) !== inputField.value || validateInput <= 0) {
+          e.preventDefault();
+          alert('WTF!!, only positive Integers except 0 can be passed!');
+          inputField.focus();
+      }else{
+          checkGuess();
+      }
+    });
 
-    //core function
     function checkGuess() {
-      const previousGuess = document.createElement('p');
-      document.body.appendChild(previousGuess);
 
-      //TODO check for non-numerical entries in the inputField.value
+      previousGuess.innerHTML = previousGuess.innerHTML.replace('blue', 'black');
+
       if (tries < 10) {
         if (Number(inputField.value) === randomNumber) {
-          previousGuess.textContent = 'RIGHT! ' + inputField.value;
+          previousGuess.innerHTML = '<span style="color:green">RIGHT!!!</span></br></br>' + previousGuess.innerHTML;
           document.body.removeChild(inputSubmit);
           reset();
-        //TODO fix dirty duplicated elseif and else
         } else if (randomNumber < inputField.value) {
-          previousGuess.textContent = 'Your Guess is too high!';
+          previousGuess.innerHTML = '<span style="color:blue">Your Guess is too high!<span></br>' + previousGuess.innerHTML;
           tries++;
           inputField.value = '';
           inputField.focus();
         } else {
-          previousGuess.textContent = 'Your Guess is too low!';
+          previousGuess.innerHTML = '<span style="color:blue">Your Guess is too low!</span></br>' + previousGuess.innerHTML;
           tries++;
           inputField.value = '';
           inputField.focus();
         }
       }else {
-        previousGuess.textContent = 'GAME OVER!!!';
-        reset();
+        previousGuess.innerHTML = '<span style="color:red">GAME OVER!!! </span></br></br>' + previousGuess.innerHTML;
+        resetGame();
       }
     }
 
-    //reset function
-    function reset() {
+    function resetGame() {
     document.body.appendChild(inputReset);
     inputReset.addEventListener('click', initGame)
     }
