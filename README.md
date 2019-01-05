@@ -15,7 +15,9 @@ simple and clean code
 #### The Task:
 - Build a simple guessing game like the one in the demo directory.
 - Build the game from scratch, your app should has a unique functions lifecycle, don't use the same methods used in the demo or in the resource below from MDN
-- Your script should validate the user's input and alert the user when incorrect input is entered "See the Demo"
+- Your script should validate the user's input and alert the user when incorrect input is entered
+
+##### [SEE THE DEMO](https://sourcya.github.io/js101) 
 
 #### Deliverables
 
