@@ -63,7 +63,7 @@ Version: 1.1.0
         if (Number(inputField.value) === randomNumber) {
           previousGuess.innerHTML = '<span style="color:green">RIGHT!!!</span></br></br>' + previousGuess.innerHTML;
           document.body.removeChild(inputSubmit);
-          reset();
+          resetGame();
         } else if (randomNumber < inputField.value) {
           previousGuess.innerHTML = '<span style="color:blue">Your Guess is too high!<span></br>' + previousGuess.innerHTML;
           tries++;
